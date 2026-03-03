@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* 完全隐藏滚动条，滚动时也不显示 */
+.auto-hide-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.auto-hide-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.auto-hide-scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+/* 兼容 Firefox */
+.auto-hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
