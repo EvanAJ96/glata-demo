@@ -302,7 +302,8 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
             alignItems: "center",
             gap: 20,
             padding: "0 16px 0 16px",
-            borderBottom: "1px solid var(--bd2)"
+            borderBottom: "1px solid var(--bd2)",
+            height: 48
           }}>
             {[
               {k: '诊断', icon: 'diagnosis'},
@@ -325,7 +326,8 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
                   border: "none",
                   cursor: "pointer",
                   borderBottom: activeCopilotTab === tab.k ? "2px solid #2962FF" : "2px solid transparent",
-                  transition: "all 0.2s"
+                  transition: "all 0.2s",
+                  height: 48
                 }}
               >
                 {tab.icon === 'diagnosis' && (
@@ -481,7 +483,8 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
               alignItems: "center",
               gap: 20,
               padding: "0 20px 0 20px",
-              borderBottom: "1px solid var(--bd2)"
+              borderBottom: "1px solid var(--bd2)",
+              height: 48
             }}>
               {[
                 {k: '诊断', icon: 'diagnosis'},
@@ -504,7 +507,8 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
                     border: "none",
                     cursor: "pointer",
                     borderBottom: activeRightTab === tab.k ? "2px solid #2962FF" : "2px solid transparent",
-                    transition: "all 0.2s"
+                    transition: "all 0.2s",
+                    height: 48
                   }}
                 >
                   {tab.icon === 'diagnosis' && (

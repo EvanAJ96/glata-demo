@@ -74,9 +74,6 @@ const WorkspaceContent = ({ currentRole }) => {
   const [selUser,setSU]  = useState(null);
   const [selTk,setSTk]   = useState(null);
   const [tabMemory, setTabMemory] = useState({});
-  const [showAddMenuUserRow, setShowAddMenuUserRow] = useState(false);
-  const addButtonRefUserRow = useRef(null);
-  const menuRefUserRow = useRef(null);
 
   const [showAddMenuTaskDetail, setShowAddMenuTaskDetail] = useState(false);
   const addButtonRefTaskDetail = useRef(null);
@@ -88,10 +85,6 @@ const WorkspaceContent = ({ currentRole }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showAddMenuUserRow && addButtonRefUserRow.current && !addButtonRefUserRow.current.contains(event.target) && menuRefUserRow.current && !menuRefUserRow.current.contains(event.target)) {
-        setShowAddMenuUserRow(false);
-      }
-
       if (showAddMenuTaskDetail && addButtonRefTaskDetail.current && !addButtonRefTaskDetail.current.contains(event.target) && menuRefTaskDetail.current && !menuRefTaskDetail.current.contains(event.target)) {
         setShowAddMenuTaskDetail(false);
       }
@@ -115,7 +108,7 @@ const WorkspaceContent = ({ currentRole }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showAddMenuUserRow, showAddMenuTaskDetail, showCreateTicketModal]);
+  }, [showAddMenuTaskDetail, showCreateTicketModal]);
 
   useEffect(() => {
     if (showCreateTicketModal) {
@@ -156,11 +149,7 @@ const WorkspaceContent = ({ currentRole }) => {
         selUser={selUser} onSelUser={handleSelectUser}
         selTk={selTk} onSelTk={handleSelectTicket}
         tabMemory={tabMemory} setTabMemory={setTabMemory}
-        showAddMenu={showAddMenuUserRow}
-        setShowAddMenu={setShowAddMenuUserRow}
         setShowCreateTicketModal={setShowCreateTicketModal}
-        addButtonRef={addButtonRefUserRow}
-        menuRef={menuRefUserRow}
         role={currentRole}
         oncallData={oncallData}
       />

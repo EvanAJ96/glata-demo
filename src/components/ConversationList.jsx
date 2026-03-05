@@ -148,18 +148,19 @@ const TkCard = ({tk,isActive,onClick,channel}) => (
   </article>
 );
 
-const UserRow = ({user,isExp,selTk,onToggle,onSelTk, showAddMenu, setShowAddMenu, setShowCreateTicketModal, addButtonRef, menuRef}) => {
+const UserRow = ({user,isExp,selTk,onToggle,onSelTk, setShowCreateTicketModal}) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showAddMenu, setShowAddMenu] = useState(false);
   
   const hasSelectedTicket = user.tickets?.some(t => t.id === selTk?.id) || selTk?.id === `user-${user.id}`;
 
   return (
     <div 
       className={`rounded-[8px] transition-colors cursor-pointer ${ 
-        isExp 
-          ? 'bg-[#F7F8FA]' 
-          : hasSelectedTicket 
-            ? 'bg-[#F1F6FF]' 
+        hasSelectedTicket 
+          ? 'bg-[#F1F6FF]' 
+          : isExp 
+            ? 'bg-[#F7F8FA]' 
             : 'bg-transparent hover:bg-[#F7F8FA]' 
       }`}
       style={{padding: isExp ? '4px' : '6px 12px'}}
@@ -249,7 +250,6 @@ const UserRow = ({user,isExp,selTk,onToggle,onSelTk, showAddMenu, setShowAddMenu
         {isExp&&(
           <div style={{position:"relative",width:"100%",marginTop:4}}>
             <button 
-              ref={addButtonRef}
               aria-label="添加" 
               style={{display:"flex",alignItems:"center",
                 justifyContent:"center",height:32,width:"100%",borderRadius:8,
@@ -276,7 +276,6 @@ const UserRow = ({user,isExp,selTk,onToggle,onSelTk, showAddMenu, setShowAddMenu
             </button>
             {showAddMenu && (
               <div 
-                ref={menuRef}
                 style={{
                 position:"absolute",
                 top:"100%",
@@ -335,6 +334,30 @@ const UserRow = ({user,isExp,selTk,onToggle,onSelTk, showAddMenu, setShowAddMenu
                 >
                   <img src={assetReturnIcon} alt="资产退库" style={{ width: 16, height: 16, marginRight: 8, filter: "invert(15%) sepia(0%) saturate(10%) hue-rotate(340deg) brightness(90%) contrast(90%)" }} />
                   资产退库工单
+                </button>
+                <button 
+                  style={{
+                    display:"flex",
+                    alignItems:"center",
+                    width:"100%",
+                    textAlign:"left",
+                    padding:"8px 12px",
+                    borderRadius:6,
+                    background:"transparent",
+                    border:"none",
+                    cursor:"pointer",
+                    transition:"background-color 0.2s",
+                    marginTop:4
+                  }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = "#F2F3F5"}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+                  onClick={() => {
+                    setShowAddMenu(false);
+                    setShowCreateTicketModal(true);
+                  }}
+                >
+                  <img src={assetReturnIcon} alt="资产维修" style={{ width: 16, height: 16, marginRight: 8, filter: "invert(15%) sepia(0%) saturate(10%) hue-rotate(340deg) brightness(90%) contrast(90%)" }} />
+                  资产维修工单
                 </button>
               </div>
             )}
@@ -519,7 +542,7 @@ const SessionRow = ({item,selTk,onSelTk,activeTab}) => {
   );
 };
 
-export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,selTk,onSelTk,tabMemory,setTabMemory, showAddMenu, setShowAddMenu, setShowCreateTicketModal, addButtonRef, menuRef, role, oncallData}) => {
+export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,selTk,onSelTk,tabMemory,setTabMemory, setShowCreateTicketModal, role, oncallData}) => {
   const tabs = role === 'tab2' ? 
     [{k:"all",l:"全部"},{k:"oncall",l:"值班号"},{k:"topic",l:"话题群"},{k:"mail",l:"邮件"}]
     : [{k:"all",l:"全部"},{k:"service",l:"服务台"},{k:"topic",l:"话题群"},{k:"mail",l:"邮件"}];
@@ -675,11 +698,7 @@ export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,sel
                   selTk={selTk}
                   onToggle={()=>toggleUser(item.id)}
                   onSelTk={onSelTk}
-                  showAddMenu={showAddMenu}
-                  setShowAddMenu={setShowAddMenu}
-                  setShowCreateTicketModal={setShowCreateTicketModal}
-                  addButtonRef={addButtonRef}
-                  menuRef={menuRef}/>
+                  setShowCreateTicketModal={setShowCreateTicketModal}/>
               </div>
             );
           } else {
