@@ -37,6 +37,8 @@ import serviceTicketIcon from "../assets/服务工单.svg";
 import assetReturnIcon from "../assets/资产退库.svg";
 import newTicketIcon from "../assets/新建工单.svg";
 import endIcon from "../assets/结束.svg";
+import pinIcon from "../assets/置顶.svg";
+import linkedGroupImg from "../assets/关联群聊.png";
 
 const importedAvatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20, avatar21, avatar22, avatar23, avatar24, avatar25, avatar26, avatar27];
 
@@ -200,7 +202,7 @@ const UserRow = ({user,isExp,selTk,onToggle,onSelTk, showAddMenu, setShowAddMenu
                       }}
                     />
                     <img 
-                      src="/置顶.svg" 
+                      src={pinIcon} 
                       alt="置顶" 
                       style={{ width: 16, height: 16, transition: 'filter 0.2s' }}
                       onMouseEnter={(e) => {
@@ -382,7 +384,7 @@ const OncallRow = ({item, selTk, onSelTk}) => {
               {isHovered ? (
                 <div style={{flexShrink:0, display: 'flex', alignItems: 'center', marginLeft: 8}}>
                   <img 
-                    src="/置顶.svg" 
+                    src={pinIcon} 
                     alt="置顶" 
                     style={{ width: 16, height: 16, transition: 'filter 0.2s' }}
                     onMouseEnter={(e) => {
@@ -427,7 +429,7 @@ const OncallRow = ({item, selTk, onSelTk}) => {
           >
             <div style={{display:"flex",alignItems:"center",gap:12,width:"100%"}}>
               <div style={{width: 36, height: 36, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <img src="/关联群聊.png" alt="关联群聊" style={{width: 36, height: 36}} />
+                <img src={linkedGroupImg} alt="关联群聊" style={{width: 36, height: 36}} />
               </div>
               <div style={{display:"flex",flexDirection:"column",gap:2,flex:1,minWidth:0}}>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>

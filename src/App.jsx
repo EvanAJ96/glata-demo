@@ -5,6 +5,11 @@ import { UserTaskListSection } from './components/ConversationList';
 import { TaskDetailAndCopilotSection } from './components/TicketDetail';
 import { mixedSessionList, oncallData } from './mockData';
 
+import iconAdminOutlined from './assets/icon_admin_outlined.svg';
+import iconAddSheetOutlined from './assets/icon_add-sheet_outlined.svg';
+import createTicketImg from './assets/创建工单.png';
+import imageCommonEmpty from './assets/image_common_empty.svg';
+
 const G = () => (
   <style>{`
     *, *::before, *::after { box-sizing: border-box; }
@@ -55,7 +60,6 @@ const ILogo = () => (
 );
 
 const IAdmin = () => {
-  const iconAdminOutlined = "/src/assets/icon_admin_outlined.svg";
   return <img src={iconAdminOutlined} alt="admin icon" style={{ width: 16, height: 16 }} />;
 };
 
@@ -81,8 +85,6 @@ const WorkspaceContent = ({ currentRole }) => {
   const [showCreateTicketModal, setShowCreateTicketModal] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const imageRefModal = useRef(null);
-  const createTicketImage = "/src/assets/创建工单.png";
-  const imageCommonEmpty = "/src/assets/image_common_empty.svg";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -179,7 +181,7 @@ const WorkspaceContent = ({ currentRole }) => {
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: isVisibleModal ? 'translate(-50%, -50%)' : 'translate(-50%, -50%) scale(0.9)', zIndex: 1002, opacity: isVisibleModal ? 1 : 0, transition: 'opacity 0.2s ease-in-out, transform 0.2s ease-out' }}>
             <img 
               ref={imageRefModal}
-              src={createTicketImage} 
+              src={createTicketImg} 
               alt="创建工单" 
               style={{ width: 600, objectFit: 'contain' }}
             />
@@ -208,7 +210,7 @@ const LeftSidebar = ({ onPageChange, activeNavTab, onNavTabChange }) => {
             style={{width:32,height:32,borderRadius:8,display:"flex",
               alignItems:"center",justifyContent:"center",
               background:"linear-gradient(0deg,rgba(41,98,255,1),rgba(41,98,255,1))"}}>
-            <img src="/src/assets/icon_add-sheet_outlined.svg" alt="add sheet icon" style={{ width: 16, height: 16 }} />
+            <img src={iconAddSheetOutlined} alt="add sheet icon" style={{ width: 16, height: 16 }} />
           </button>
         </nav>
       </header>
