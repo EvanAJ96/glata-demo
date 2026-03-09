@@ -62,9 +62,9 @@ const Badge = ({label, bg, clr}) => (
 );
 
 export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu, setShowCreateTicketModal, addButtonRef, menuRef, role, selUser, oncallData}) => {
-  const [copilotWidth, setCopilotWidth] = useState(520);
+  const [copilotWidth, setCopilotWidth] = useState(540);
   const [isDragging, setIsDragging] = useState(false);
-  const minWidth = 520;
+  const minWidth = 540;
   
   const getInitialTabName = () => {
     if (!ticket) return '工单处理';
