@@ -295,7 +295,7 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
         </div>
       </header>
 
-      {role === 'tab1' && ticket?.src !== "话题群" && ticket?.src !== "邮件" ? (
+      {(role === 'tab0') || (role === 'tab1' && ticket?.src !== "话题群" && ticket?.src !== "邮件") ? (
         <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
           <div style={{
             display: "flex",

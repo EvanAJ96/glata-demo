@@ -274,7 +274,7 @@ const LeftSidebar = ({ onPageChange, activeNavTab, onNavTabChange }) => {
 };
 
 const Screen = () => {
-  const [activeNavTab, setActiveNavTab] = useState('tab1');
+  const [activeNavTab, setActiveNavTab] = useState('tab0');
   const [page, setPage] = useState('dashboard');
 
   return (
