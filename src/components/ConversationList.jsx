@@ -587,6 +587,16 @@ export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,sel
         return hours * 60 + minutes;
       };
       return timeToMinutes(b.time) - timeToMinutes(a.time);
+    }) : role === 'tab0' ?
+    mixedSessionList.filter(item => {
+      return item.channel === 'servicedesk';
+    }).sort((a, b) => {
+      const timeToMinutes = (timeStr) => {
+        if (!timeStr) return 0;
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        return hours * 60 + minutes;
+      };
+      return timeToMinutes(b.time) - timeToMinutes(a.time);
     }) :
     mixedSessionList.filter(item => {
       if (activeTab === 'all') return true;
@@ -618,7 +628,7 @@ export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,sel
       borderRight:"1px solid var(--bd2)"}}>
       <header style={{display:"flex",flexDirection:"column",gap:8,padding:"16px 16px",width:"100%",height:56}}>
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-          <h1 className="m16 ct1" style={{margin:0}}>{role === 'tab1' ? '我的工作台（SD）' : '我的工作台（OSC）'}</h1>
+          <h1 className="m16 ct1" style={{margin:0}}>我的工作台</h1>
           <button style={{padding:4}} aria-label="管理"><IAdmin/></button>
         </div>
       </header>
@@ -626,57 +636,60 @@ export const UserTaskListSection = ({activeTab,onTabChange,selUser,onSelUser,sel
       <div style={{padding:"0 16px"}}>
         {role !== 'tab2' && (
           <div style={{display:"flex",alignItems:"center",gap:4,height:32,padding:"5px 12px",
-            borderRadius:6,background:"var(--bg1)",border:"1px solid var(--bd2)"}}>
+            borderRadius:6,background:"var(--bg1)",border:"1px solid var(--bd2)",
+            marginBottom: role === 'tab0' ? '12px' : '0px'}}>
             <ISearch/>
             <input type="search" placeholder="输入用户信息、资产编码、领取码"
               className="r14 ct4" style={{flex:1, minWidth: 0, paddingLeft: 0, paddingRight: 0}}/>
           </div>
         )}
         
-        <div style={{display:"flex",alignItems:"center",gap:6,padding: role === 'tab2' ? "0 0 12px 0" : "12px 0",overflowX:"auto"}}>
-          {tabs.map(tab => (
-            <button
-              key={tab.k}
-              onClick={() => {
-                const channelMap = role === 'tab2' ? {
-                  'oncall': 'oncall',
-                  'topic': 'topic',
-                  'mail': 'email'
-                } : {
-                  'service': 'servicedesk',
-                  'topic': 'topic',
-                  'mail': 'email'
-                };
-                const channel = channelMap[tab.k];
-                const memoryKey = tab.k === 'all' ? 'all' : channel;
-                onTabChange(tab.k, memoryKey ? tabMemory[memoryKey] || null : null);
-              }}
-              style={{
-                padding:"6px 12px",
-                borderRadius:"9999px",
-                fontSize:"14px",
-                fontWeight:activeTab === tab.k ? "500" : "400",
-                transition:"background-color 0.2s, color 0.2s, font-weight 0.2s",
-                whiteSpace:"nowrap",
-                backgroundColor:activeTab === tab.k ? "#e8f2ff" : "#f2f3f5",
-                color:activeTab === tab.k ? "#2962ff" : "#4e5969",
-                cursor:"pointer"
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== tab.k) {
-                  e.target.style.backgroundColor = "#e5e6eb";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== tab.k) {
-                  e.target.style.backgroundColor = "#f2f3f5";
-                }
-              }}
-            >
-              {tab.l}
-            </button>
-          ))}
-        </div>
+        {role !== 'tab0' && (
+          <div style={{display:"flex",alignItems:"center",gap:6,padding: role === 'tab2' ? "0 0 12px 0" : "12px 0",overflowX:"auto"}}>
+            {tabs.map(tab => (
+              <button
+                key={tab.k}
+                onClick={() => {
+                  const channelMap = role === 'tab2' ? {
+                    'oncall': 'oncall',
+                    'topic': 'topic',
+                    'mail': 'email'
+                  } : {
+                    'service': 'servicedesk',
+                    'topic': 'topic',
+                    'mail': 'email'
+                  };
+                  const channel = channelMap[tab.k];
+                  const memoryKey = tab.k === 'all' ? 'all' : channel;
+                  onTabChange(tab.k, memoryKey ? tabMemory[memoryKey] || null : null);
+                }}
+                style={{
+                  padding:"6px 12px",
+                  borderRadius:"9999px",
+                  fontSize:"14px",
+                  fontWeight:activeTab === tab.k ? "500" : "400",
+                  transition:"background-color 0.2s, color 0.2s, font-weight 0.2s",
+                  whiteSpace:"nowrap",
+                  backgroundColor:activeTab === tab.k ? "#e8f2ff" : "#f2f3f5",
+                  color:activeTab === tab.k ? "#2962ff" : "#4e5969",
+                  cursor:"pointer"
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab.k) {
+                    e.target.style.backgroundColor = "#e5e6eb";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab.k) {
+                    e.target.style.backgroundColor = "#f2f3f5";
+                  }
+                }}
+              >
+                {tab.l}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <section className="auto-hide-scroll" style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:4,marginLeft:4,marginRight:4,marginBottom:0,paddingBottom:24,maxHeight:"calc(100vh - 100px)"}}>
