@@ -234,7 +234,7 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
                 if (role === 'tab2' && ticket.id && ticket.id.startsWith('IT-')) return '诊断';
                 return '工单处理';
               })(), icon: 'diagnosis', hideWhenNoTickets: true},
-              {k: '问答', icon: 'qa', hideWhenNoTickets: true},
+              {k: '问答', icon: 'qa'},
               {k: '用户信息', icon: 'userInfo', tag: '近期有差评'},
               {k: '历史工单', icon: 'previoustickets'},
               {k: '职场信息', icon: 'workplace'}
@@ -433,7 +433,7 @@ export const TaskDetailAndCopilotSection = ({ticket, showAddMenu, setShowAddMenu
                   if (role === 'tab2' && ticket.id && ticket.id.startsWith('IT-')) return '诊断';
                   return '工单处理';
                 })(), icon: 'diagnosis', hideWhenNoTickets: true},
-                {k: '问答', icon: 'qa', hideWhenNoTickets: true},
+                {k: '问答', icon: 'qa'},
                 {k: '用户信息', icon: 'userInfo', tag: '近期有差评'},
                 {k: '历史工单', icon: 'previoustickets'},
                 {k: '职场信息', icon: 'workplace'}
